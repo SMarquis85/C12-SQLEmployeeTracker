@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
   // Your username
   user: "root",
   // Your password
-  password: "password",
+  password: "SEXiii.bby1985!",
   database: "galactic_empire_db",
 });
 

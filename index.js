@@ -1,6 +1,7 @@
 // npm packages set as variables
 const inquirer = require("inquirer");
 const figlet = require("figlet");
+//import chalk from 'chalk';
 const chalk = require("chalk");
 const cTable = require("console.table");
 
@@ -25,7 +26,7 @@ connection.connect((err) => {
     )
   );
 
-  console.log(`                                                                    ` + chalk.yellow.bold("Created By: James Fisher"));
+  console.log(`                                                                    ` + chalk.yellow.bold("Created By: Sophie Marquis"));
 
   console.log(``);
   console.log(chalk.blue.bold(`==============================================================================================`));
@@ -60,6 +61,10 @@ initialQuery = () => {
         case "Add department, roles or employees":
           addValue();
           break;
+
+        case "Remove department":
+            removeDep();
+            break;
 
         case "Update employee role":
           updateRole();
