@@ -285,7 +285,7 @@ removeDep = () => {
       },
     ])
     .then((answer) => {
-      const query = `SELECT dept_id AS Department_ID FROM Departments WHERE name = ?`;
+      const query = `SELECT dept_id AS Department_ID, name AS Department_Name FROM Departments WHERE name = ?`;
       connection.query(query, [answer.depToRemove], (err, res) => {
         if (err) throw err;
         if (res.length === 0) {
