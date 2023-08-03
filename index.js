@@ -46,6 +46,7 @@ initialQuery = () => {
       choices: [
         "View department, roles or employees",
         "Add department, roles or employees",
+        "Remove department",
         "Update employee role",
         "Remove employee",
         "View department budgets",
