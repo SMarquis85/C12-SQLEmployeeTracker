@@ -275,45 +275,40 @@ updateRole = () => {
 }
 
 // function to remove a department from the database
-removeDep = () => {
+
+function removeDep() {
   inquirer
     .prompt([
       {
-        name: "depToRemove",
+        name: "departmentName",
         type: "input",
         message: "What is the department you would like to remove?",
       },
     ])
     .then((answer) => {
-      const query = `SELECT dept_id AS Department_ID, name AS Department_Name FROM Departments WHERE name = ?`;
-      connection.query(query, [answer.depToRemove], (err, res) => {
+      const departmentName = answer.departmentName;
+
+      // Debugging statement to check the departmentName
+      console.log("Department name to remove:", departmentName);
+
+      // Check if the department exists in the database
+      const checkDepartmentQuery = "SELECT * FROM departments WHERE name = ?";
+      connection.query(checkDepartmentQuery, [departmentName], (err, results) => {
         if (err) throw err;
-        if (res.length === 0) {
-          console.log(chalk.red.inverse("No department found"));
-          initialQuery();
+
+        // Debugging statement to check the query results
+        console.log("Query results:", results);
+
+        if (results.length === 0) {
+          console.log("No department found");
+          mainPrompt();
         } else {
-          console.log(chalk.green.inverse("Department found"));
-          console.log(` `);
-          console.log(chalk.green.bold(`====================================================================================`));
-          console.log(`                              ` + chalk.red.bold(`Department Information:`));
-          console.table(res);
-          console.log(chalk.green.bold(`====================================================================================`));
-          inquirer
-            .prompt({
-              name: "depConfirm",
-              type: "number",
-              message: "Please enter the department ID to confirm choice:",
-            })
-            .then((answer) => {
-              const deleteQuery = `DELETE FROM Departments WHERE dept_id = ?`;
-              connection.query(deleteQuery, [answer.depConfirm], (err, res) => {
-                if (err) throw err;
-                console.log(chalk.green.bold(`====================================================================================`));
-                console.log(`                  ` + chalk.red.bold(`Department #${answer.depConfirm} has been removed.`));
-                console.log(chalk.green.bold(`====================================================================================`));
-                initialQuery();
-              });
-            });
+          const removeDepartmentQuery = "DELETE FROM departments WHERE name = ?";
+          connection.query(removeDepartmentQuery, [departmentName], (err, result) => {
+            if (err) throw err;
+            console.log(`Department "${departmentName}" has been removed.`);
+            mainPrompt();
+          });
         }
       });
     });
