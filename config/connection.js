@@ -11,6 +11,4 @@ const connection = mysql.createConnection({
   database: "galactic_empire_db",
 });
 
-module.exports = {
-    connection
-}
+module.exports = connection;
