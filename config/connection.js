@@ -1,5 +1,5 @@
 const mysql = require("mysql2");
-const inquirer = require("inquirer")
+const inquirer = require("inquirer");
 
 const connection = mysql.createConnection({
   host: "localhost",

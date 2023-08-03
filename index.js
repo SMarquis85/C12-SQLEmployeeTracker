@@ -1,8 +1,8 @@
 const inquirer = require("inquirer");
-const mysql = requirer("mysql2");
 const figlet = require("figlet");
 const chalk = require("chalk");
-const cTable = require("console.table")
+const mysql = require("mysql2");
+const cTable = require("console.table");
 
 const connection = require('./config/connection');
 
