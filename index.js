@@ -2,10 +2,11 @@
 const inquirer = require("inquirer");
 const figlet = require("figlet");
 const chalk = require("chalk");
+const mysql = require("mysql2");
 const cTable = require("console.table");
 
 // modules set as variables
-const {connection} = require('./config/connection');
+const connection = require('./config/connection');
 
 // function that runs upon starting the file
 connection.connect((err) => {
@@ -81,7 +82,7 @@ initialQuery = () => {
 }
  
  // function to view tables of departments, roles and/or employees
- viewTable = () => {
+ function viewTable() {
    inquirer
      .prompt({
        name: "view_table",
@@ -137,7 +138,7 @@ initialQuery = () => {
  }
  
  // function to add a department, role and/or employee
- addValue = () => {
+ function addValue() {
    // array variables to store data pulled from database for use in questions
    let listOfDepartments = [];
    let listOfRoles = [];
@@ -419,7 +420,7 @@ initialQuery = () => {
  }
  
  // function to remove a department from the database
- removeDep = () => {
+ function removeDep() {
   inquirer
     .prompt([
       {
@@ -464,7 +465,7 @@ initialQuery = () => {
 }
  
  // function to remove an employee from the database
- removeEmp = () => {
+ function removeEmp() {
  
    inquirer
      .prompt([
@@ -524,7 +525,7 @@ initialQuery = () => {
  }
  
  // function to view the budgets of each department
- viewBudget = () => {
+ function viewBudget() {
    const query = `SELECT departments.dept_id AS Dept_ID, departments.name AS Department_Name, CONCAT('$', FORMAT(SUM(salary),0)) AS Budget 
    FROM roles 
    INNER JOIN employees USING (role_id)
@@ -538,6 +539,7 @@ initialQuery = () => {
      console.table(res);
      console.log(chalk.green.bold(`====================================================================================`));
      console.log(` `);
+     
      initialQuery();
    })
  }
