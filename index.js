@@ -285,7 +285,7 @@ removeDep = () => {
       },
     ])
     .then((answer) => {
-      const query = `SELECT dep_id AS Department_ID FROM departments WHERE name = ?`;
+      const query = `SELECT department_id AS Department_ID FROM departments WHERE name = ?`;
       connection.query(query, [answer.depToRemove], (err, res) => {
         if (err) throw err;
         if (res.length === 0) {
@@ -305,7 +305,7 @@ removeDep = () => {
               message: "Please enter the department ID to confirm choice:",
             })
             .then((answer) => {
-              const deleteQuery = `DELETE FROM departments WHERE dep_id = ?`;
+              const deleteQuery = `DELETE FROM departments WHERE department_id = ?`;
               connection.query(deleteQuery, [answer.depConfirm], (err, res) => {
                 if (err) throw err;
                 console.log(chalk.green.bold(`====================================================================================`));
