@@ -1,7 +1,8 @@
 const inquirer = require("inquirer");
+const mysql = requirer("mysql2");
 const figlet = require("figlet");
 const chalk = require("chalk");
-const cTable = require("console.table");
+const cTable = require("console.table")
 
 const connection = require('./config/connection');
 
@@ -25,11 +26,11 @@ connection.connect((err) => {
   initialQuery();
 });
 
-initialQuery = () => {
+function mainPrompt() {
   inquirer
     .prompt({
       name: "action",
-      type: "rawlist",
+      type: "list",
       message: "What would you like to do?",
       choices: [
         "View department, roles or employees",
@@ -44,29 +45,23 @@ initialQuery = () => {
     .then((answer) => {
       switch (answer.action) {
         case "View department, roles or employees":
-          viewTable();
+          viewPrompt();
           break;
-
         case "Add department, roles or employees":
-          addValue();
+          addPrompt();
           break;
-
         case "Remove department":
-          removeDep();
+          removeDep(); // Call the removeDep function
           break;
-
         case "Update employee role":
-          updateRole();
+          updateEmpRole();
           break;
-
         case "Remove employee":
           removeEmp();
           break;
-
         case "View department budgets":
-          viewBudget();
+          viewBudgets();
           break;
-
         case "Exit":
           connection.end();
           break;
