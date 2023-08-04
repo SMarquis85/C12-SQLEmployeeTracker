@@ -37,7 +37,7 @@ connection.connect((err) => {
 });
 
 // initial question asks user what they would like to do
-initialQuery = () => {
+function initialQuery() {
   inquirer
     .prompt({
       name: "action",
@@ -139,185 +139,175 @@ initialQuery = () => {
  
  // function to add a department, role and/or employee
  function addValue() {
-   // array variables to store data pulled from database for use in questions
-   let listOfDepartments = [];
-   let listOfRoles = [];
-   let listOfManagers = [];
-   // asks user what they would like to add
-   inquirer
-     .prompt({
-       name: "add",
-       type: "list",
-       message: "Which would you like to add?",
-       choices: ["Department", "Role", "Employee"],
-     })
-     .then((val) => {
-       // if user selects "Department"
-       if (val.add === "Department") {
-         inquirer
-           .prompt({
-             type: "input",
-             name: "dept_add",
-             message:
-               "What is the name of the department you would like to add?",
-             validate: newDeptInput => {
-               if (newDeptInput) {
-                 return true
-               } else {
-                 console.log("Please enter a name for the new department");
-                 return false
-               }
-             }
-           })
-           .then((answer) => {
-             console.log(' ');
-             console.log(chalk.green.bold(`====================================================================================`));
-             console.log(`                     ` + chalk.red.bold(`Department Added:`) + ` ${answer.dept_add}`);
-             console.log(chalk.green.bold(`====================================================================================`));
-             console.log(' ');
-             connection.query("INSERT INTO Departments SET ?", { name: answer.dept_add }, (err, res) => {
-               if (err) throw err;
-               initialQuery();
-             }
-             );
-           });
- 
-       };
-     });
- }
- 
-   // if user selects "Role"
-   if (val.add === "Role") {
-     connection.query(`SELECT * FROM departments`, (err, res) => {
-       if (err) throw err;
-       listOfDepartments = res.map(dept => (
-         {
-           name: dept.name,
-           value: dept.dept_id
-         }
-       ))
-       inquirer
-         .prompt([
-           {
-             type: "input",
-             name: "role_add",
-             message: "What is the name of the role you would like to add?",
-             validate: newRoleInput => {
-               if (newRoleInput) {
-                 return true
-               } else {
-                 console.log("Please enter a name for the new role");
-                 return false
-               }
-             }
-           },
-           {
-             type: "number",
-             name: "salary",
-             message: "What is the salary for the role you would like to add?",
-             default: 10000
-           },
-           {
-             type: "list",
-             name: "deptId",
-             message: "What is the department for the role you would like to add?",
-             choices: listOfDepartments
-           }
-         ])
-         .then((answer) => {
-           console.log(' ');
-           console.log(chalk.green.bold(`====================================================================================`));
-           console.log(`                     ` + chalk.red.bold(`Role Added:`) + ` ${answer.role_add} with a salary of ${answer.salary}`);
-           console.log(chalk.green.bold(`====================================================================================`));
-           console.log(' ');
-           connection.query("INSERT INTO Roles SET ?",
-             {
-               title: answer.role_add,
-               salary: answer.salary,
-               dept_id: answer.deptId,
-             },
-             (err, res) => {
-               if (err) throw err;
-               initialQuery();
-             }
-           );
-         });
-     })
- 
- 
-     // if user selects "Employee"
-   } else if (val.add === "Employee") {
- 
-     connection.query(`SELECT * FROM roles`, (err, res) => {
-       if (err) throw err;
-       listOfRoles = res.map(role => (
-         {
-           name: role.title,
-           value: role.role_id
-         }
-       ));
- 
- 
-       inquirer
-         .prompt([
- 
-           {
-             type: "input",
-             name: "empAddFirstName",
-             message:
-               "What is the first name of the employee you would like to add?",
-             validate: firstNameInput => {
-               if (firstNameInput) {
-                 return true
-               } else {
-                 console.log("Please enter a first name");
-                 return false
-               }
-             }
-           },
-           {
-             type: "input",
-             name: "empAddLastName",
-             message:
-               "What is the last name of the employee you would like to add?",
-           },
-           {
-             type: "list",
-             name: "roleId",
-             message: "What is the role of the employee you would like to add?",
-             choices: listOfRoles
-           },
-           {
-             type: "number",
-             name: "empAddMgrId",
-             message:
-               "What is the manager ID of the employee you would like to add?",
-             default: 1,
-           },
-         ])
-         .then((answer) => {
-           console.log(' ');
-           console.log(chalk.green.bold(`====================================================================================`));
-           console.log(`                     ` + chalk.red.bold(`Employee Added:`) + ` ${answer.empAddFirstName} ${answer.empAddLastName}`);
-           console.log(chalk.green.bold(`====================================================================================`));
-           console.log(' ');
-           connection.query("INSERT INTO Employees SET ?",
-             {
-               last_name: answer.empAddLastName,
-               first_name: answer.empAddFirstName,
-               role_id: answer.roleId,
-               manager_id: answer.empAddMgrId,
-             },
-             (err, res) => {
-               if (err) throw err;
-               initialQuery();
-             }
-           );
-         });
-     })
- 
-   }
- 
+  // array variables to store data pulled from database for use in questions
+  let listOfDepartments = [];
+  let listOfRoles = [];
+  let listOfManagers = [];
+  // asks user what they would like to add
+  inquirer
+    .prompt({
+      name: "add",
+      type: "list",
+      message: "Which would you like to add?",
+      choices: ["Department", "Role", "Employee"],
+    })
+    .then((val) => {
+      // if user selects "Department"
+      if (val.add === "Department") {
+        inquirer
+          .prompt({
+            type: "input",
+            name: "dept_add",
+            message:
+              "What is the name of the department you would like to add?",
+            validate: newDeptInput => {
+              if (newDeptInput) {
+                return true
+              } else {
+                console.log("Please enter a name for the new department");
+                return false
+              }
+            }
+          })
+          .then((answer) => {
+            console.log(' ');
+            console.log(chalk.green.bold(`====================================================================================`));
+            console.log(`                     ` + chalk.red.bold(`Department Added:`) + ` ${answer.dept_add}`);
+            console.log(chalk.green.bold(`====================================================================================`));
+            console.log(' ');
+            connection.query("INSERT INTO Departments SET ?", { name: answer.dept_add }, (err, res) => {
+              if (err) throw err;
+              initialQuery();
+            });
+          });
+
+      } else if (val.add === "Role") { // If user selects "Role"
+        connection.query(`SELECT * FROM departments`, (err, res) => {
+          if (err) throw err;
+          listOfDepartments = res.map(dept => (
+            {
+              name: dept.name,
+              value: dept.dept_id
+            }
+          ));
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                name: "role_add",
+                message: "What is the name of the role you would like to add?",
+                validate: newRoleInput => {
+                  if (newRoleInput) {
+                    return true
+                  } else {
+                    console.log("Please enter a name for the new role");
+                    return false
+                  }
+                }
+              },
+              {
+                type: "number",
+                name: "salary",
+                message: "What is the salary for the role you would like to add?",
+                default: 10000
+              },
+              {
+                type: "list",
+                name: "deptId",
+                message: "What is the department for the role you would like to add?",
+                choices: listOfDepartments
+              }
+            ])
+            .then((answer) => {
+              console.log(' ');
+              console.log(chalk.green.bold(`====================================================================================`));
+              console.log(`                     ` + chalk.red.bold(`Role Added:`) + ` ${answer.role_add} with a salary of ${answer.salary}`);
+              console.log(chalk.green.bold(`====================================================================================`));
+              console.log(' ');
+              connection.query("INSERT INTO Roles SET ?",
+                {
+                  title: answer.role_add,
+                  salary: answer.salary,
+                  dept_id: answer.deptId,
+                },
+                (err, res) => {
+                  if (err) throw err;
+                  initialQuery();
+                }
+              );
+            });
+        });
+
+      } else if (val.add === "Employee") { // If user selects "Employee"
+        connection.query(`SELECT * FROM roles`, (err, res) => {
+          if (err) throw err;
+          listOfRoles = res.map(role => (
+            {
+              name: role.title,
+              value: role.role_id
+            }
+          ));
+
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                name: "empAddFirstName",
+                message:
+                  "What is the first name of the employee you would like to add?",
+                validate: firstNameInput => {
+                  if (firstNameInput) {
+                    return true
+                  } else {
+                    console.log("Please enter a first name");
+                    return false
+                  }
+                }
+              },
+              {
+                type: "input",
+                name: "empAddLastName",
+                message:
+                  "What is the last name of the employee you would like to add?",
+              },
+              {
+                type: "list",
+                name: "roleId",
+                message: "What is the role of the employee you would like to add?",
+                choices: listOfRoles
+              },
+              {
+                type: "number",
+                name: "empAddMgrId",
+                message:
+                  "What is the manager ID of the employee you would like to add?",
+                default: 1,
+              },
+            ])
+            .then((answer) => {
+              console.log(' ');
+              console.log(chalk.green.bold(`====================================================================================`));
+              console.log(`                     ` + chalk.red.bold(`Employee Added:`) + ` ${answer.empAddFirstName} ${answer.empAddLastName}`);
+              console.log(chalk.green.bold(`====================================================================================`));
+              console.log(' ');
+              connection.query("INSERT INTO Employees SET ?",
+                {
+                  last_name: answer.empAddLastName,
+                  first_name: answer.empAddFirstName,
+                  role_id: answer.roleId,
+                  manager_id: answer.empAddMgrId,
+                },
+                (err, res) => {
+                  if (err) throw err;
+                  initialQuery();
+                }
+              );
+            });
+        });
+
+      }
+    });
+}
  
  // function to update the role of a single employee
  updateRole = () => {
@@ -539,7 +529,7 @@ initialQuery = () => {
      console.table(res);
      console.log(chalk.green.bold(`====================================================================================`));
      console.log(` `);
-     
+
      initialQuery();
    })
  }
