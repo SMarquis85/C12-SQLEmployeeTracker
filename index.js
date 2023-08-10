@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const cTable = require("console.table");
 
 // modules set as variables
-const {connection} = require('./config/connection');
+const connection = require('./config/connection.js');
 
 // function that runs upon starting the file
 connection.connect((err) => {
