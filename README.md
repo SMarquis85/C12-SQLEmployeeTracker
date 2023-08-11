@@ -10,9 +10,10 @@ Challenge 12 - Boot Camp
   2. [About](#about)
       1. [User Story](#user-story)
       2. [Acceptance criteria](#acceptance-criteria)
-  3. [Screenshots](#screenshots)
+  3. [Screenshot](#screenshot)    
+  3. [Walkthrough Video](#walkthrough-video)
   4. [License](#license)
-  5. [Contact](#Contact)
+  5. [Contact](#contact)
   6. [Final Work Review](#final-work-review)
 
 
@@ -53,14 +54,11 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 ```
 
-## Screenshots
+## Screenshot
 
 ![images/HEROKU3.png](images/HEROKU3.png)
 
-![images/HEROKU4.png](images/HEROKU4.png)
-
-![images/HEROKU5.png](images/HEROKU5.png)
-
+## Walkthrough Video
 
 ## License
 
@@ -81,7 +79,6 @@ License used for this project - MIT
 
 > **(CARL-VIRT-FSF-PT-04-2023, Challenge 11 / README.md 2023)**
 > **(JavaScript Full Stack Developers, Lawrence Wilson; Audiobook (2023) 6hrs and 29mins. )**
-
 
 
 ## Github Repository Link:
