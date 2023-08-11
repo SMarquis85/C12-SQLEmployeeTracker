@@ -10,8 +10,8 @@ Challenge 12 - Boot Camp
   2. [About](#about)
       1. [User Story](#user-story)
       2. [Acceptance criteria](#acceptance-criteria)
-  3. [Screenshot](#screenshot)    
-  3. [Walkthrough Video](#walkthrough-video)
+  3. [Screenshots](#screenshots)    
+  3. [Walkthrough Videos](#walkthrough-videos)
   4. [License](#license)
   5. [Contact](#contact)
   6. [Final Work Review](#final-work-review)
@@ -54,11 +54,21 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 ```
 
-## Screenshot
+## Screenshots
 
-![images/HEROKU3.png](images/HEROKU3.png)
+![images/Node1.png](images/Node1.png)
 
-## Walkthrough Video
+![images/Node2.png](images/Node2.png)
+
+![images/Node3.png](images/Node3.png)
+
+![images/Node4.png](images/Node4.png)
+
+## Walkthrough Videos
+
+https://drive.google.com/file/d/1JykXZG6BHhkz2lh9F6i69dVe8Eh3cqYC
+
+https://drive.google.com/file/d/1RIqGLK8JrAVD-F7C_hx14PU4ck5taqw0
 
 ## License
 
@@ -85,3 +95,4 @@ License used for this project - MIT
 
 
 ## Github Repository Link:
+
