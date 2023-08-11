@@ -75,7 +75,7 @@ License used for this project - MIT
 
   ## Final Work Review
 
-**"Always leave the code a little cleaner than when you found it."**  This action was applied to ALL JAVASCRIPT files. To create this assignment, I used Lawrence Wilson's Audiobook, Cathy Tanimura's book on SQL. References we're found on Google, multiple websites including W3Schools, DEV, GitHub, Insomnia and Tutorialspoint. YouTube was helpful as well as all ZOOM recordings (of previous classes). Looks much cleaner, organised and easier to find what you are looking for. I also received the help of my second tutor, Erik Hoversten. He helped deployed the application to Heroku without any issues or errors.
+**"Always leave the code a little cleaner than when you found it."**  This action was applied to ALL JAVASCRIPT files. To create this assignment, I used Lawrence Wilson's Audiobook, Cathy Tanimura's book on SQL. References we're found on Google, multiple websites including W3Schools, DEV, GitHub, Insomnia and Tutorialspoint. YouTube was helpful as well as all ZOOM recordings (of previous classes). Looks much cleaner, organised and easier to find what you are looking for. I also received the help of my second tutor, Erik Hoversten. He helped clean up my code and fix multiple errors I have encountered while building this database.
 
 > **(CARL-VIRT-FSF-PT-04-2023, Challenge 11 / README.md 2023)**
 
